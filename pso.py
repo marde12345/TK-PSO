@@ -64,6 +64,7 @@ def main():
         ax.clear()
         ax.grid(True)
 
+    plt.show()
     print ('Gbest: ')
     print (Gbest)
 
