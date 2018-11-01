@@ -4,7 +4,7 @@ import matplotlib.pyplot as plt
 
 def main():
     #Variables
-    n = 5
+    n = 10
     num_variables = 2
 
     #Create Array
@@ -21,16 +21,21 @@ def main():
             a[i][j] = Pbest[i][j]
             v[i][j] = 0
     
+    print('Partikel Position =',a)
+    print('Partikel Velocity =',v)
+    print('Partikel Best = ',Pbest)
+    print('Global Best =',Gbest)
+
     #r
     for i in range(0, n):
         r[i] = fitness(a[0][i], a[1][i])
+    print('Partikel Fitness ='r)
 
     #Sort Pbest
     Sort(Pbest, r, n)
 
     Gbest[0][0] = Pbest[0][0]
     Gbest[0][1] = Pbest[1][0]
-    print('gbest ak ',Gbest)
 
     generation = 0
 
@@ -40,6 +45,7 @@ def main():
     ax.grid(True)
     
     while(generation < 50):
+        print('Generasi -',generation)
         for i in range(n):
             #Pbest
             if(fitness(a[0][i], a[1][i]) < fitness(Pbest[0][i], Pbest[1][i])):
@@ -51,6 +57,7 @@ def main():
                 Gbest[0][1] = Pbest[1][i]
             #Velocity
             Vector_velocity(n, a, Pbest, Gbest, v)
+
         generation = generation + 1
         print ('Generation: ' + str(generation) + ' - - - Gbest: ' +str(Gbest))
 
